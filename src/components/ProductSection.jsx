@@ -1,13 +1,9 @@
-import { productsArr } from "../data";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ProductsCardPage from "./ProductsCardPage";
+import { AppContext } from "../Context";
 
 const ProductSection = () => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    setItems(productsArr);
-  }, []);
+  const { items } = useContext(AppContext);
   return (
     <div className="products-container">
       <h1>Products</h1>

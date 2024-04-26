@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { FaIndianRupeeSign } from "react-icons/fa6";
 
 function ProductsCardPage({ item }) {
   // console.log(item);
@@ -8,7 +9,7 @@ function ProductsCardPage({ item }) {
       <Card.Img variant="top" src={item.imageUrl} />
       <Card.Body>
         <Card.Title className="title">{item.title}</Card.Title>
-        <Card.Title className="price">PRICE : {item.price}</Card.Title>
+        <Card.Title className="price">Price : Rs.{item.price} </Card.Title>
         <Button variant="primary" className="cardbtn">
           Add to Cart
         </Button>

@@ -15,7 +15,7 @@ const Footer = () => {
               <cite title="Source Title">Project Task</cite>
             </p>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-3">
             <div className="social-icons">
               <a href="#!" className="me-3 text-decoration-none text-light">
                 <FaFacebook />

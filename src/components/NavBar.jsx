@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FaCartPlus } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <Navbar
@@ -13,21 +13,27 @@ const NavBar = () => {
       className="nav"
     >
       <Container>
-        <Navbar.Brand href="#home">SHARPENER TECH PROJECT</Navbar.Brand>
+        <Link to="/" className="link">
+          <Navbar.Brand href="#home">SHARPENER TECH PROJECT</Navbar.Brand>{" "}
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">HOME</Nav.Link>
-            <Nav.Link href="#store">STORE</Nav.Link>
-            <Nav.Link href="#about">About</Nav.Link>
+            <Nav.Link href="/">HOME</Nav.Link>
+
+            <Nav.Link href="/store">STORE</Nav.Link>
+
+            <Nav.Link href="/about">ABOUT</Nav.Link>
           </Nav>
-          <Nav className="d-flex nav-container">
-            <FaCartPlus className="cart-icon" />
-            <p>Your Cart</p>
-            <div className="amount-container">
-              <p className="total-amount">0</p>
+          <Link to="/cart" className="link">
+            <div className="d-flex nav-container">
+              <FaCartPlus className="cart-icon" />
+              <p>Your Cart</p>
+              <div className="amount-container">
+                <p className="total-amount">0</p>
+              </div>
             </div>
-          </Nav>
+          </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
