@@ -6,18 +6,32 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "../components/Swiper.css";
 import { Pagination, Navigation, EffectCoverflow } from "swiper";
-import slide_image_1 from "../assets/images/img_1.jpg";
-import slide_image_2 from "../assets/images/img_2.jpg";
-import slide_image_3 from "../assets/images/img_3.jpg";
-import slide_image_4 from "../assets/images/img_4.jpg";
-import slide_image_5 from "../assets/images/img_5.jpg";
+import { useLocation } from "react-router-dom";
+
+import slide_image_1 from "../assets/images/img_10.jpg";
+import slide_image_2 from "../assets/images/img_12.jpg";
+import slide_image_3 from "../assets/images/img_11.jpg";
+import slide_image_4 from "../assets/images/img_13.jpg";
+import slide_image_5 from "../assets/images/img_14.jpg";
 import slide_image_6 from "../assets/images/img_6.jpg";
-import slide_image_7 from "../assets/images/img_7.jpg";
+import slide_image_7 from "../assets/images/img_16.jpg";
+import slide_image_8 from "../assets/images/img_17.jpg";
+import slide_image_9 from "../assets/images/img_18.jpg";
+import slide_image_10 from "../assets/images/img_19.jpg";
 import SwiperCore, { Autoplay } from "swiper";
 SwiperCore.use([Autoplay]);
 
 const Home = () => {
   const swiperRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/") {
+      document.body.classList.add("home-bg");
+    } else {
+      document.body.classList.remove("home-bg");
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     const swiperInstance = swiperRef.current.swiper;
@@ -79,6 +93,15 @@ const Home = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={slide_image_7} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_8} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_9} alt="slide_image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slide_image_10} alt="slide_image" />
         </SwiperSlide>
 
         <div className="slider-controler">

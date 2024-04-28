@@ -1,6 +1,8 @@
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Home from "./components/Home";
 import StorePage from "./components/StorePage";
 import AboutPage from "./components/AboutPage";
@@ -18,6 +20,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
         </Routes>
       </AppProvider>
+      <ToastContainer pauseOnHover autoClose={1500} position="top-center" />
     </Router>
   );
 }
