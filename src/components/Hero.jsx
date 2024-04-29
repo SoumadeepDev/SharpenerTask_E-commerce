@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
     <div className="hero-container">
-      <h1>The Generics</h1>
+      <h1>The Golden Era</h1>
     </div>
   );
 };

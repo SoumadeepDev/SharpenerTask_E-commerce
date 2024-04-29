@@ -5,12 +5,44 @@ import { toast } from "react-toastify";
 export const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-  const [cartElement, setCartElement] = useState([]);
+  const [cartElement, setCartElement] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   const [items, setItems] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  useEffect(() => {
+    setCartElement(cartElement);
+  }, []);
+
+  // Save cart data to localStorage whenever cartElement changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartElement));
+  }, [cartElement]);
 
   useEffect(() => {
     setItems(productsArr);
   }, []);
+
+  useEffect(() => {
+    // Calculate total amount whenever cartElement changes
+    console.log("Cart Element Before Saving to Local Storage:", cartElement);
+    const calculatedTotal = cartElement.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalAmount(calculatedTotal);
+
+    // //calculate total quantity in the cart
+    // const totalQuantity = cartElement.reduce(
+    //   (total, item) => total + item.quantity,
+    //   0
+    // );
+
+    // Save cart data to localStorage
+    localStorage.setItem("cart", JSON.stringify(cartElement));
+    console.log("Cart Element After Saving to Local Storage:", cartElement);
+  }, [cartElement]);
 
   const addToCart = (itemId) => {
     const itemToAdd = items.find((item) => item.id === itemId);
@@ -28,12 +60,14 @@ const AppProvider = ({ children }) => {
             )
           : [...cartElement, { ...itemToAdd, quantity: 1 }];
         setCartElement(updatedCart);
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
         toast.dismiss();
-        toast.success("Item added to cart!");
+        toast.success(`${itemToAdd.title} added to cart!`);
       }
     } else {
       toast.dismiss();
-      toast.error("Item is out of stock!");
+      toast.error(`${itemToAdd.title} Ticket is not available!`);
     }
   };
 
@@ -44,7 +78,8 @@ const AppProvider = ({ children }) => {
   const removeFromCart = (itemId) => {
     const updatedCart = cartElement.filter((item) => item.id !== itemId);
     setCartElement(updatedCart);
-    toast.success("Item removed from cart!");
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    toast.success("Ticket removed from cart!");
   };
 
   const increaseQuantity = (itemId) => {
@@ -54,9 +89,13 @@ const AppProvider = ({ children }) => {
         item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
       );
       setCartElement(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
     } else {
       toast.dismiss();
-      toast.error("Cannot increase quantity, item stock is insufficient!");
+      toast.error("Cannot increase quantity, no more tickets available!");
+      setTimeout(() => {
+        toast.info("To get a ticket, please check later!");
+      }, 2500);
     }
   };
 
@@ -67,6 +106,7 @@ const AppProvider = ({ children }) => {
         : item
     );
     setCartElement(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
 
   return (
@@ -79,6 +119,7 @@ const AppProvider = ({ children }) => {
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
+        totalAmount,
       }}
     >
       {children}

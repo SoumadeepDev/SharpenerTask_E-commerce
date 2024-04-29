@@ -4,10 +4,10 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../Context";
 import { useLocation } from "react-router-dom";
 import "../components/Swiper.css";
+import { Link } from "react-router-dom";
 
 function ProductsCardPage({ item }) {
   const { addToCart } = useContext(AppContext);
-
   const location = useLocation();
 
   useEffect(() => {
@@ -21,7 +21,9 @@ function ProductsCardPage({ item }) {
 
   return (
     <Card style={{ width: "18rem" }} className="Card-details">
-      <Card.Img variant="top" src={item.imageUrl} />
+      <Link to={`/movie/${item.id}`} className="movie-link">
+        <Card.Img variant="top" src={item.imageUrl} />
+      </Link>
       <Card.Body>
         <Card.Title className="title">{item.title}</Card.Title>
         <Card.Title className="price">Price : Rs.{item.price} </Card.Title>
@@ -40,7 +42,7 @@ function ProductsCardPage({ item }) {
           className="cardbtn"
           onClick={() => addToCart(item.id)}
         >
-          Add to Cart
+          Buy Ticket
         </Button>
       </Card.Body>
     </Card>

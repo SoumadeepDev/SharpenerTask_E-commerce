@@ -3,16 +3,24 @@ import Navbar from "react-bootstrap/Navbar";
 import { FaCartPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AppContext } from "../Context";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const NavBar = () => {
   const { cartElement } = useContext(AppContext);
+  const [isBumped, setIsBumped] = useState(false);
 
   // Calculate the total quantity of items in the cart
   const totalQuantity = cartElement.reduce(
     (total, item) => total + item.quantity,
     0
   );
+
+  const handleClick = () => {
+    setIsBumped(true);
+    setTimeout(() => {
+      setIsBumped(false);
+    }, 300);
+  };
 
   return (
     <Navbar expand="lg" fixed="top" className="nav">
@@ -39,7 +47,11 @@ const NavBar = () => {
               </Link>
             </li>
           </ul>
-          <Link to="/cart" className="link">
+          <Link
+            to="/cart"
+            className={`link ${isBumped ? "bump-animation" : ""}`}
+            onClick={handleClick}
+          >
             <div className="d-flex nav-container">
               <FaCartPlus className="cart-icon" />
               <p>Your Cart</p>

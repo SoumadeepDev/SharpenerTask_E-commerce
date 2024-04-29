@@ -8,16 +8,16 @@ import "../components/Swiper.css";
 import { Pagination, Navigation, EffectCoverflow } from "swiper";
 import { useLocation } from "react-router-dom";
 
-import slide_image_1 from "../assets/images/img_10.jpg";
-import slide_image_2 from "../assets/images/img_12.jpg";
-import slide_image_3 from "../assets/images/img_11.jpg";
-import slide_image_4 from "../assets/images/img_13.jpg";
-import slide_image_5 from "../assets/images/img_14.jpg";
-import slide_image_6 from "../assets/images/img_6.jpg";
-import slide_image_7 from "../assets/images/img_16.jpg";
-import slide_image_8 from "../assets/images/img_17.jpg";
-import slide_image_9 from "../assets/images/img_18.jpg";
-import slide_image_10 from "../assets/images/img_19.jpg";
+import slide_image_1 from "../assets/movies_assets/movie_0.jpeg";
+import slide_image_2 from "../assets/movies_assets/movie_1.jpeg";
+import slide_image_3 from "../assets/movies_assets/movie_2.jpeg";
+import slide_image_4 from "../assets/movies_assets/movie_3.jpeg";
+import slide_image_5 from "../assets/movies_assets/movie_4.jpeg";
+import slide_image_6 from "../assets/movies_assets/movie_5.jpeg";
+import slide_image_7 from "../assets/movies_assets/movie_6.jpeg";
+import slide_image_8 from "../assets/movies_assets/movie_7.jpeg";
+import slide_image_9 from "../assets/movies_assets/movie_8.jpeg";
+import slide_image_10 from "../assets/movies_assets/movie_9.jpeg";
 import SwiperCore, { Autoplay } from "swiper";
 SwiperCore.use([Autoplay]);
 
@@ -28,6 +28,7 @@ const Home = () => {
   useEffect(() => {
     if (location.pathname === "/") {
       document.body.classList.add("home-bg");
+      document.body.classList.remove("about-bg");
     } else {
       document.body.classList.remove("home-bg");
     }
@@ -49,7 +50,7 @@ const Home = () => {
 
   return (
     <div className="container home-section">
-      <h1 className="heading">Gallery</h1>
+      <h1 className="heading">Indian Oscar Nominated Films</h1>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

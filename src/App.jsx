@@ -8,19 +8,21 @@ import StorePage from "./components/StorePage";
 import AboutPage from "./components/AboutPage";
 import CartPage from "./components/CartPage";
 import AppProvider from "./Context";
+import MovieDetails from "./components/MovieDetails";
 function App() {
   return (
     <Router>
       <AppProvider>
+        <ToastContainer pauseOnHover autoClose={1500} position="top-center" />
         <NavBar />
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/store" element={<StorePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/movie/:id" element={<MovieDetails />} />
         </Routes>
       </AppProvider>
-      <ToastContainer pauseOnHover autoClose={1500} position="top-center" />
     </Router>
   );
 }

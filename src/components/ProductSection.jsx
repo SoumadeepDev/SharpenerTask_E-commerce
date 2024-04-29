@@ -6,7 +6,7 @@ const ProductSection = () => {
   const { items } = useContext(AppContext);
   return (
     <div className="products-container">
-      <h1>Products</h1>
+      <h1>Classic Indian Cinema: Oscar Winners Edition</h1>
       <div className="card-container">
         {items.map((item) => (
           <ProductsCardPage key={item.id} item={item} />

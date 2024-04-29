@@ -6,7 +6,7 @@ import "../components/Swiper.css";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartElement, handleClearCart } = useContext(AppContext);
+  const { totalAmount, cartElement, handleClearCart } = useContext(AppContext);
 
   const location = useLocation();
 
@@ -44,10 +44,6 @@ const CartPage = () => {
       </div>
     );
   }
-  const totalAmount = cartElement.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
   return (
     <section className="cart">
@@ -81,4 +77,5 @@ const CartPage = () => {
     </section>
   );
 };
+
 export default CartPage;
