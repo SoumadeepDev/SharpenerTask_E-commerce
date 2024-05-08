@@ -116,7 +116,7 @@ html {
 
 .slider-controler {
   margin-top: 0rem;
-  padding-top: 1rem;
+  padding-top: 0rem;
   position: relative;
   bottom: 2rem;
   display: flex;
